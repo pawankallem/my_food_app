@@ -10,7 +10,9 @@ import { Navbar } from "../components/Navbar";
 export const Routers=()=>{
 
     return <>
+    <div id="fixed-positioned-navbar">
         <Navbar/>
+    </div>
         <Routes>
             <Route exact path="/" element={<Home/>} />
             <Route exact path="/register" element={<Register/>} />

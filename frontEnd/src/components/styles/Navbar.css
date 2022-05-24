@@ -1,0 +1,17 @@
+
+#main-navbar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 60%;
+    background-color: rgba(0, 0, 0, 0.587);
+    height: 50px;
+    margin: auto;
+    border-radius: 5px;
+}
+.button{
+    color: rgb(42, 222, 45);
+    text-decoration: none;
+    font-size: 150%;
+}
+

@@ -42,8 +42,7 @@ export const Home = () =>{
     <br />
     <button onClick={handleClick}>{ !isAuth ? "Authenticate User" : `hello ${user.name}` }</button>
     <br />
-
-
+    <br />
     <div id="mainDiv">
 
         {
