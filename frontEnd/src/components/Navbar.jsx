@@ -5,7 +5,6 @@ import {useSelector,useDispatch} from "react-redux";
 import {logoutRequest} from "../Redux/auth/action.js"
 import {useNavigate} from "react-router-dom"
 import axios from "axios";
-import { set } from "mongoose";
 
 
 export const Navbar=()=>{
