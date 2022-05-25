@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles/SigninAndup.css";
+import {loginRequest} from "../Redux/auth/action.js";
+import {useDispatch} from "react-redux";
 
 const init = {
   email: "",
@@ -11,6 +13,7 @@ const init = {
 export const Login = () => {
   const [login, setLogin] = useState(init);
   const navigate = useNavigate();
+  const dispatch=useDispatch();
 
   const handleChange = (e) => {
     // console.log(e.target.value)
@@ -25,7 +28,8 @@ export const Login = () => {
         login
       )
       .then((res) => {
-        localStorage.setItem("token", JSON.stringify(res.data.token));
+        // localStorage.setItem("token", JSON.stringify(res.data.token));
+        dispatch(loginRequest(res.data.token));
         alert(res.data.message);
         // console.log(res.data)
         navigate("/");
@@ -34,10 +38,7 @@ export const Login = () => {
         console.log(err);
       });
   };
-  // if(state.isAuth){
-  //     navigate("/")
-  // }
-
+ 
   return (
     <div>
       <form onSubmit={handleSubmit}>

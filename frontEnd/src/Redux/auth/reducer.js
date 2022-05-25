@@ -10,7 +10,7 @@ if(token){
     initState={
         ...initState,
         isAuth:true,
-        message:"",
+        message:"authenticated user!",
         token:token
     }
 }
@@ -18,13 +18,13 @@ if(token){
 export const authReducer=(state=initState,{type,payload})=>{
     switch(type){
         case LOGIN_REQUEST:
-            console.log(payload)
-            localStorage.setItem("token",JSON.stringify(payload.token));
+            // console.log(payload)
+            localStorage.setItem("token",JSON.stringify(payload));
             return {
                 ...state,
                 isAuth:true,
                 message:"Login successful",
-                token:payload.token
+                token:payload
             }
         case LOGOUT_REQUEST:
             localStorage.removeItem("token");

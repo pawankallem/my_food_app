@@ -4,43 +4,42 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Home.css";
+import {useSelector} from "react-redux"
 
 export const Home = () =>{
 
     const [data,setData] = useState([]);
-    const [isAuth,setIsAuth]=useState(false);
     const [user,setUser]=useState([])
+    const state=useSelector((state)=>state.auth);
 
     useEffect(()=>{
-
+        console.log(state);
         axios.get("https://www.themealdb.com/api/json/v1/1/categories.php")
         .then((res)=>{
             setData(res.data.categories)
             console.log(data)
         })
+
+        if(state.isAuth){
+            let token=state.token;
+            axios.get("https://food-app-with-authentication.herokuapp.com/auth/",{
+                headers:{
+                    "Authorization" : `Bearer ${token}`
+                }
+            })
+            .then((res)=>{
+                console.log(res.data)
+                setUser(res.data.user)
+            })
+        }
         
     },[])
-
-    const handleClick=()=>{
-        let token=JSON.parse(localStorage.getItem("token"));
-        // console.log(token)
-        axios.get("https://food-app-with-authentication.herokuapp.com/auth/",{
-            headers:{
-                "Authorization" : `Bearer ${token}`
-            }
-        })
-        .then((res)=>{
-            console.log(res.data)
-            setIsAuth(true);
-            setUser(res.data.user)
-        })
-    }
 
     return <>
     
     <h1 id="title">Food App</h1>
     <br />
-    <button onClick={handleClick}>{ !isAuth ? "Authenticate User" : `hello ${user.name}` }</button>
+    <button>{ !state.isAuth ? "Authenticate User" : `hello ${user.name}` }</button>
     <br />
     <br />
     <div id="mainDiv">
