@@ -13,13 +13,12 @@ export const Home = () =>{
     const state=useSelector((state)=>state.auth);
 
     useEffect(()=>{
-        console.log(state);
+        // console.log(state);
         axios.get("https://www.themealdb.com/api/json/v1/1/categories.php")
         .then((res)=>{
             setData(res.data.categories)
-            console.log(data)
+            // console.log(data)
         })
-
         if(state.isAuth){
             let token=state.token;
             axios.get("https://food-app-with-authentication.herokuapp.com/auth/",{
@@ -28,7 +27,7 @@ export const Home = () =>{
                 }
             })
             .then((res)=>{
-                console.log(res.data)
+                // console.log(res.data)
                 setUser(res.data.user)
             })
         }

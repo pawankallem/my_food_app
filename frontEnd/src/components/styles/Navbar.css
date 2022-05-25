@@ -13,5 +13,7 @@
     color: rgb(42, 222, 45);
     text-decoration: none;
     font-size: 150%;
+    background-color: transparent;
+    border: none;
 }
 
